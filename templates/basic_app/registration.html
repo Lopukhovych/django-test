@@ -1,0 +1,17 @@
+<!doctype html>
+{% extends 'basic_app/base.html' %}
+{% block body_block %}
+    <div class="jumbotron">
+        {% if registered %}
+            <h2>You are successfully registered</h2>
+            <h4>Please <a href='{% url 'basic_app:login_user' %}'>Log In</a></h4>
+        {% else %}
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <button class="btn btn-success">Submit</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}
